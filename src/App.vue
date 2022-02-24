@@ -8,12 +8,10 @@
   </div>
   <div class="container">
     <p v-if="!isCommentsLoaded">
-      <button class="btn primary">Загрузить комментарии</button>
+      <button class="btn primary" @click="loadComments">Загрузить комментарии</button>
     </p>
-
-    <app-loader v-else-if="isLoading"></app-loader>
-
     <app-comments v-else></app-comments>
+    <app-loader v-if="isLoading"></app-loader>
   </div>
 
 </template>
@@ -23,6 +21,7 @@ import AppForm from "@/components/AppForm";
 import AppResumeView from "@/components/AppResumeView";
 import AppComments from "@/components/AppComments";
 import AppLoader from "@/components/AppLoader";
+import axios from "axios"
 
 export default {
   components: {AppForm, AppResumeView, AppComments, AppLoader},
@@ -30,7 +29,31 @@ export default {
   data() {
     return {
       isLoading: false,
-      isCommentsLoaded: false
+      isCommentsLoaded: false,
+      comments: [],
+    }
+  },
+
+  methods: {
+    loadComments() {
+      this.isLoading = true
+
+      setTimeout(async () => {
+        try {
+          const {data} = await axios.get('https://jsonplaceholder.typicode.com/comments?_limit=42')
+
+          this.comments = data
+          console.log(this.comments)
+
+          this.isLoading = false
+          this.isCommentsLoaded = true
+        } catch (e) {
+          this.isLoading = false
+          console.log(e.message)
+        }
+      }, 1500)
+
+
     }
   }
 
