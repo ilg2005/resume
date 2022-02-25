@@ -1,11 +1,15 @@
 <template>
+  <app-alert
+      v-if="this.alert"
+      :alert="this.alert"
+      @close="this.alert = null"
+  ></app-alert>
+
   <div class="container column">
-
     <app-form></app-form>
-
     <app-resume-view></app-resume-view>
-
   </div>
+
   <div class="container">
     <p v-if="!isCommentsLoaded">
       <button class="btn primary" @click="loadComments">Загрузить комментарии</button>
@@ -21,16 +25,18 @@ import AppForm from "@/components/AppForm";
 import AppResumeView from "@/components/AppResumeView";
 import AppComments from "@/components/AppComments";
 import AppLoader from "@/components/AppLoader";
+import AppAlert from "@/components/AppAlert";
 import axios from "axios"
 
 export default {
-  components: {AppForm, AppResumeView, AppComments, AppLoader},
+  components: {AppForm, AppResumeView, AppComments, AppLoader, AppAlert},
 
   data() {
     return {
       isLoading: false,
       isCommentsLoaded: false,
       comments: [],
+      alert: null,
     }
   },
 
@@ -42,14 +48,23 @@ export default {
         try {
           const {data} = await axios.get('https://jsonplaceholder.typicode.com/comments?_limit=42')
 
+          if (!data) {
+            this.alert = {
+              type: 'warning',
+              title: 'Пока комментариев нет',
+              text: ''
+            }
+          }
           this.comments = data
-          console.log(this.comments)
-
           this.isLoading = false
           this.isCommentsLoaded = true
         } catch (e) {
           this.isLoading = false
-          console.log(e.message)
+          this.alert = {
+            type: 'danger',
+            title: 'Комментарии не были загружены',
+            text: e.message
+          }
         }
       }, 1500)
 
