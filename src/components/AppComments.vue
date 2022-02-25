@@ -2,10 +2,13 @@
   <div class="card">
     <h2>Комментарии</h2>
     <ul class="list">
-      <li class="list-item">
+      <li class="list-item"
+          v-for="comment in comments"
+          :key="comment.id"
+      >
         <div>
-          <p><strong>test@microsoft.com</strong></p>
-          <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, reiciendis.</small>
+          <p><strong>{{ comment.email }}</strong></p>
+          <small>{{ comment.body }}</small>
         </div>
       </li>
     </ul>
@@ -15,7 +18,10 @@
 
 <script>
 export default {
-  name: "AppComments"
+  name: "AppComments",
+  props: {
+    comments: Array,
+  }
 }
 </script>
 

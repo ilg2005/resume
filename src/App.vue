@@ -10,7 +10,7 @@
     <p v-if="!isCommentsLoaded">
       <button class="btn primary" @click="loadComments">Загрузить комментарии</button>
     </p>
-    <app-comments v-else></app-comments>
+    <app-comments v-else :comments="this.comments"></app-comments>
     <app-loader v-if="isLoading"></app-loader>
   </div>
 
