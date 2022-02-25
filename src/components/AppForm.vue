@@ -15,14 +15,19 @@
       <textarea id="value" rows="3"></textarea>
     </div>
 
-    <button class="btn primary">Добавить</button>
+    <button class="btn primary" :disabled="!isTextValid">Добавить</button>
   </form>
 
 </template>
 
 <script>
 export default {
-  name: "AppForm"
+  name: "AppForm",
+  data() {
+    return {
+      isTextValid: false
+    }
+  }
 }
 </script>
 

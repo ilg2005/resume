@@ -1,21 +1,30 @@
 <template>
   <div class="card card-w70">
-    <h1>Резюме Nickname</h1>
-    <div class="avatar">
-      <img src="https://cdn.dribbble.com/users/5592443/screenshots/14279501/drbl_pop_r_m_rick_4x.png">
+    <div v-if="!isBlank">
+      <app-title></app-title>
+      <app-avatar></app-avatar>
+      <app-subtitle></app-subtitle>
+      <app-text></app-text>
     </div>
-    <h2>Опыт работы</h2>
-    <p>
-      главный герой американского мультсериала «Рик и Морти», гениальный учёный, изобретатель, атеист (хотя в некоторых сериях он даже молится Богу, однако, каждый раз после чудесного спасения ссылается на удачу и вновь отвергает его существование), алкоголик, социопат, дедушка Морти. На момент начала третьего сезона ему 70 лет[1]. Рик боится пиратов, а его главной слабостью является некий - "Санчезиум". Исходя из того, что существует неограниченное количество вселенных, существует неограниченное количество Риков, герой сериала предположительно принадлежит к измерению С-137. В серии комикcов Рик относится к измерению C-132, а в игре «Pocket Mortys» — к измерению C-123[2]. Прототипом Рика Санчеза является Эмметт Браун, герой кинотрилогии «Назад в будущее»[3].
-    </p>
-    <h3>Добавьте первый блок, чтобы увидеть результат</h3>
+    <h3 v-if="isBlank">Добавьте первый блок, чтобы увидеть результат</h3>
   </div>
 
 </template>
 
 <script>
+import AppTitle from "@/components/AppTitle";
+import AppSubtitle from "@/components/AppSubtitle";
+import AppAvatar from "@/components/AppAvatar";
+import AppText from "@/components/AppText";
+
 export default {
-  name: "AppResumeView"
+  name: "AppResumeView",
+  components: {AppTitle, AppSubtitle, AppAvatar, AppText},
+  data() {
+    return {
+      isBlank: true
+    }
+  }
 }
 </script>
 
