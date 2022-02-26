@@ -20,7 +20,10 @@
 export default {
   name: "AppComments",
   props: {
-    comments: Array,
+    comments: {
+      type: Array,
+      required: false
+    },
   }
 }
 </script>

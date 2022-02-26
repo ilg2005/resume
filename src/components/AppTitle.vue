@@ -5,6 +5,14 @@
 <script>
 export default {
   name: "AppTitle",
-  props: ['text']
+  props: {
+    text: {
+      type: String,
+      required: true,
+      validator(value) {
+        return value.length > 3
+      }
+    }
+  }
 }
 </script>

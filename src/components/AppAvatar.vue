@@ -7,8 +7,15 @@
 <script>
 export default {
   name: "AppAvatar",
-  props: ['text']
-}
+  props: {
+    text: {
+      type: String,
+      required: true,
+      validator(value) {
+        return value.length > 3
+      }
+    }
+  }}
 </script>
 
 <style>

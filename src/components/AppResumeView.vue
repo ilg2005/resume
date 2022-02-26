@@ -21,7 +21,12 @@ import AppText from "@/components/AppText";
 export default {
   name: "AppResumeView",
   components: {AppTitle, AppSubtitle, AppAvatar, AppText},
-  props: ['fields'],
+  props: {
+    fields: {
+      type: Array,
+      required: true
+    }
+  },
 }
 </script>
 

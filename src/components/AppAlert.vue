@@ -10,7 +10,13 @@
 <script>
 export default {
   name: "AppAlert",
-  props: ['alert'],
+  props: {
+    alert: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  },
   emits: ['close'],
 }
 </script>
