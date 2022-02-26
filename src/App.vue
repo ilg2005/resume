@@ -6,7 +6,10 @@
   ></app-alert>
 
   <div class="container column">
-    <app-form @submitted="collectSubmittedData"></app-form>
+    <app-form
+        @submitted="collectSubmittedData"
+        @alert="(obj) => { this.alert = obj }"
+    ></app-form>
     <app-resume-view :fields="submittedData"></app-resume-view>
   </div>
 
@@ -41,6 +44,10 @@ export default {
     }
   },
 
+  mounted() {
+    this.loadFields()
+  },
+
   methods: {
     collectSubmittedData(obj) {
       this.submittedData.push(obj)
@@ -67,6 +74,34 @@ export default {
         this.alert = {
           type: 'danger',
           title: 'Комментарии не были загружены',
+          text: e.message
+        }
+      }
+    },
+
+    async loadFields() {
+      this.isLoading = true
+
+      try {
+        const {data} = await axios.get('https://vue-demo-deploy-7673c-default-rtdb.asia-southeast1.firebasedatabase.app/fields.json')
+
+        if (!data) {
+          this.isLoading = false
+          console.warn('Данных в базе пока нет')
+          return false
+        }
+
+        this.submittedData = Object.keys(data).map(key => ({
+          id: key,
+          ...data[key]
+        }))
+
+        this.isLoading = false
+      } catch (e) {
+        this.isLoading = false
+        this.alert = {
+          type: 'danger',
+          title: 'Данные не были загружены',
           text: e.message
         }
       }

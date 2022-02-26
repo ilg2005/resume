@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "AppForm",
   emits: {
@@ -31,7 +33,8 @@ export default {
         console.warn('Invalid submitted event payload!')
         return false
       }
-    }
+    },
+    alert: null
   },
   data() {
     return {
@@ -42,10 +45,30 @@ export default {
     }
   },
   methods: {
-    submitValue() {
-      this.$emit('submitted', {...this.submittedData})
+    resetForm() {
       this.submittedData.type = 'title'
       this.submittedData.text = ''
+    },
+
+    submitValue() {
+      this.$emit('submitted', {...this.submittedData})
+      const sendPostRequest = async () => {
+        try {
+          const resp = await axios.post('https://vue-demo-deploy-7673c-default-rtdb.asia-southeast1.firebasedatabase.app/fields.json', this.submittedData);
+          console.log(resp.data);
+        } catch (e) {
+          const alert = {
+            type: 'danger',
+            title: 'Данные не были загружены',
+            text: e.message
+          }
+          this.$emit('alert',  {...alert})
+        }
+      };
+
+      sendPostRequest();
+
+      this.resetForm()
     }
   },
   computed: {
