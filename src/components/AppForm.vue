@@ -2,7 +2,7 @@
   <form class="card card-w30" @submit.prevent="submitValue">
     <div class="form-control">
       <label for="type">Тип блока</label>
-      <select id="type">
+      <select id="type" v-model="submittedData.type">
         <option value="title">Заголовок</option>
         <option value="subtitle">Подзаголовок</option>
         <option value="avatar">Аватар</option>
@@ -26,20 +26,21 @@ export default {
   data() {
     return {
       submittedData: {
-        type: '',
+        type: 'title',
         text: ''
       },
     }
   },
   methods: {
     submitValue() {
-      console.log(this.submittedData.text)
+      console.log(this.submittedData)
+      this.submittedData.type = 'title'
       this.submittedData.text = ''
     }
   },
   computed: {
     isTextValid() {
-     return  this.submittedData.text.length > 3
+      return this.submittedData.text.length > 3
     }
   }
 }
