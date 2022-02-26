@@ -17,7 +17,9 @@ export default {
       default: null
     }
   },
-  emits: ['close'],
+  emits: {
+    close: null
+  },
 }
 </script>
 

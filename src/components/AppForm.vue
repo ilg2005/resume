@@ -23,6 +23,16 @@
 <script>
 export default {
   name: "AppForm",
+  emits: {
+    submitted: ({ type, text }) => {
+      if (type && text) {
+        return true
+      } else {
+        console.warn('Invalid submitted event payload!')
+        return false
+      }
+    }
+  },
   data() {
     return {
       submittedData: {
