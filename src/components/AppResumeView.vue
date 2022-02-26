@@ -1,9 +1,13 @@
 <template>
   <div class="card card-w70">
-    <div v-if="!isBlank">
-      <component :is="`app-${type}`" :text="text"></component>
+    <div v-if="fields.length">
+      <component v-for="field in fields"
+                 :key="field"
+                 :is="`app-${field.type}`"
+                 :text="field.text"
+      ></component>
     </div>
-    <h3 v-if="isBlank">Добавьте первый блок, чтобы увидеть результат</h3>
+    <h3 v-else>Добавьте первый блок, чтобы увидеть результат</h3>
   </div>
 
 </template>
@@ -17,10 +21,10 @@ import AppText from "@/components/AppText";
 export default {
   name: "AppResumeView",
   components: {AppTitle, AppSubtitle, AppAvatar, AppText},
-  props: ['type', 'text'],
+  props: ['fields'],
   data() {
     return {
-      isBlank: true
+
     }
   }
 }

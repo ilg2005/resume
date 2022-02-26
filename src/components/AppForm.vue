@@ -34,6 +34,7 @@ export default {
   methods: {
     submitValue() {
       console.log(this.submittedData)
+      this.$emit('submitted', {...this.submittedData})
       this.submittedData.type = 'title'
       this.submittedData.text = ''
     }

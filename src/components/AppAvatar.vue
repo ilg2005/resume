@@ -1,6 +1,6 @@
 <template>
   <div class="avatar">
-    <img src="{{ text }}">
+    <img :src= text>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .avatar {
   display: flex;
   justify-content: center;

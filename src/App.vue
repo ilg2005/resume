@@ -6,8 +6,8 @@
   ></app-alert>
 
   <div class="container column">
-    <app-form></app-form>
-    <app-resume-view></app-resume-view>
+    <app-form @submitted="collectSubmittedData"></app-form>
+    <app-resume-view :fields="submittedData"></app-resume-view>
   </div>
 
   <div class="container">
@@ -37,10 +37,16 @@ export default {
       isCommentsLoaded: false,
       comments: [],
       alert: null,
+      submittedData: []
     }
   },
 
   methods: {
+    collectSubmittedData(obj) {
+      this.submittedData.push(obj)
+      console.log(this.submittedData)
+    },
+
     loadComments() {
       this.isLoading = true
 
