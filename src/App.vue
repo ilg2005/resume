@@ -44,43 +44,34 @@ export default {
   methods: {
     collectSubmittedData(obj) {
       this.submittedData.push(obj)
-      console.log(this.submittedData)
     },
 
-    loadComments() {
+    async loadComments() {
       this.isLoading = true
 
-      setTimeout(async () => {
-        try {
-          const {data} = await axios.get('https://jsonplaceholder.typicode.com/comments?_limit=42')
+      try {
+        const {data} = await axios.get('https://jsonplaceholder.typicode.com/comments?_limit=42')
 
-          if (!data) {
-            this.alert = {
-              type: 'warning',
-              title: 'Пока комментариев нет',
-              text: ''
-            }
-          }
-          this.comments = data
-          this.isLoading = false
-          this.isCommentsLoaded = true
-        } catch (e) {
-          this.isLoading = false
+        if (!data) {
           this.alert = {
-            type: 'danger',
-            title: 'Комментарии не были загружены',
-            text: e.message
+            type: 'warning',
+            title: 'Пока комментариев нет',
+            text: ''
           }
         }
-      }, 1500)
-
-
+        this.comments = data
+        this.isLoading = false
+        this.isCommentsLoaded = true
+      } catch (e) {
+        this.isLoading = false
+        this.alert = {
+          type: 'danger',
+          title: 'Комментарии не были загружены',
+          text: e.message
+        }
+      }
     }
   }
 
 }
 </script>
-
-<style>
-
-</style>

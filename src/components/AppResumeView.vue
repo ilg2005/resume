@@ -22,14 +22,6 @@ export default {
   name: "AppResumeView",
   components: {AppTitle, AppSubtitle, AppAvatar, AppText},
   props: ['fields'],
-  data() {
-    return {
-
-    }
-  }
 }
 </script>
 
-<style scoped>
-
-</style>
