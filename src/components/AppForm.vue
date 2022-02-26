@@ -32,12 +32,17 @@ export default {
     }
   },
   methods: {
-    submitValue() {
-      this.$emit('submitted', {...this.submittedData})
+    resetForm() {
       this.submittedData.type = 'title'
       this.submittedData.text = ''
+    },
+
+    submitValue() {
+      this.$emit('submitted', {...this.submittedData})
+      this.resetForm()
     }
   },
+
   computed: {
     isTextValid() {
       return this.submittedData.text.length > 3
