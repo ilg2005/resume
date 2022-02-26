@@ -12,7 +12,7 @@
 
     <div class="form-control">
       <label for="value">Значение</label>
-      <textarea id="value" rows="3" v-model="submittedValue"></textarea>
+      <textarea id="value" rows="3" v-model="submittedData.text"></textarea>
     </div>
 
     <button class="btn primary" :disabled="!isTextValid">Добавить</button>
@@ -25,18 +25,21 @@ export default {
   name: "AppForm",
   data() {
     return {
-      submittedValue: '',
+      submittedData: {
+        type: '',
+        text: ''
+      },
     }
   },
   methods: {
     submitValue() {
-      console.log(this.submittedValue)
-      this.submittedValue = ''
+      console.log(this.submittedData.text)
+      this.submittedData.text = ''
     }
   },
   computed: {
     isTextValid() {
-     return  this.submittedValue.length > 3
+     return  this.submittedData.text.length > 3
     }
   }
 }
