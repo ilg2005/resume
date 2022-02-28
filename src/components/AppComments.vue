@@ -1,5 +1,9 @@
 <template>
-  <div class="card">
+  <p v-if="!isCommentsLoaded">
+    <button class="btn primary" @click="$emit('loading')">Загрузить комментарии</button>
+  </p>
+
+  <div class="card" v-else>
     <h2>Комментарии</h2>
     <ul class="list">
       <li class="list-item"
@@ -19,11 +23,14 @@
 <script>
 export default {
   name: "AppComments",
+  emits: ['loading'],
   props: {
+    isCommentsLoaded: Boolean,
     comments: {
       type: Array,
       required: false
     },
-  }
+  },
+
 }
 </script>

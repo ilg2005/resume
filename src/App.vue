@@ -14,10 +14,11 @@
   </div>
 
   <div class="container">
-    <p v-if="!isCommentsLoaded">
-      <button class="btn primary" @click="loadComments">Загрузить комментарии</button>
-    </p>
-    <app-comments v-else :comments="this.comments"></app-comments>
+    <app-comments
+        @loading="loadComments"
+        :comments="this.comments"
+        :is-comments-loaded="isCommentsLoaded"
+    ></app-comments>
     <app-loader v-if="isLoading"></app-loader>
   </div>
 
