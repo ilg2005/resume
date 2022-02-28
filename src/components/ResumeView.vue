@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import AppTitle from "@/components/AppTitle";
-import AppSubtitle from "@/components/AppSubtitle";
-import AppAvatar from "@/components/AppAvatar";
-import AppText from "@/components/AppText";
+import AppTitle from "@/components/ResumeViewTitle";
+import AppSubtitle from "@/components/ResumeViewSubtitle";
+import AppAvatar from "@/components/ResumeViewAvatar";
+import AppText from "@/components/ResumeViewText";
 
 export default {
   name: "AppResumeView",
