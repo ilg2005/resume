@@ -54,7 +54,7 @@ export default {
       this.$emit('submitted', {...this.submittedData})
       const sendPostRequest = async () => {
         try {
-          const resp = await axios.post('https://vue-demo-deploy-7673c-default-rtdb.asia-southeast1.firebasedatabase.app/fields.json', this.submittedData);
+          const resp = await axios.post(process.env.VUE_APP_FB_URL, this.submittedData);
           console.log(resp.data);
         } catch (e) {
           const alert = {

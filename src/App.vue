@@ -84,7 +84,7 @@ export default {
       this.isLoading = true
 
       try {
-        const {data} = await axios.get('https://vue-demo-deploy-7673c-default-rtdb.asia-southeast1.firebasedatabase.app/fields.json')
+        const {data} = await axios.get(process.env.VUE_APP_FB_URL)
 
         if (!data) {
           this.isLoading = false
