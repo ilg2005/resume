@@ -84,7 +84,7 @@ export default {
       this.isLoading = true
 
       try {
-        const {data} = await axios.get(process.env.VUE_APP_FB_URL)
+        const {data} = await axios.get(process.env.VUE_APP_URL)
 
         if (!data) {
           this.isLoading = false
