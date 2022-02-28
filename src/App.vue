@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import AppForm from "@/components/Form";
+import AppForm from "@/components/ResumeForm";
 import AppResumeView from "@/components/ResumeView";
-import AppComments from "@/components/Comments";
+import AppComments from "@/components/ResumeComments";
 import AppLoader from "@/components/AppLoader";
 import AppAlert from "@/components/AppAlert";
 import axios from "axios"
