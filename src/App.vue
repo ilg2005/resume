@@ -68,15 +68,15 @@ export default {
           }
         }
         this.comments = data
-        this.isLoading = false
         this.isCommentsLoaded = true
       } catch (e) {
-        this.isLoading = false
         this.alert = {
           type: 'danger',
           title: 'Комментарии не были загружены',
           text: e.message
         }
+      } finally {
+        this.isLoading = false
       }
     },
 
