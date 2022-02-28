@@ -31,6 +31,7 @@ import AppComments from "@/components/ResumeComments";
 import AppLoader from "@/components/AppLoader";
 import AppAlert from "@/components/AppAlert";
 import axios from "axios"
+import {firebaseUrl} from "@/main";
 
 export default {
   components: {AppForm, AppResumeView, AppComments, AppLoader, AppAlert},
@@ -84,7 +85,7 @@ export default {
       this.isLoading = true
 
       try {
-        const {data} = await axios.get(process.env.VUE_APP_URL)
+        const {data} = await axios.get(firebaseUrl)
 
         if (!data) {
           this.isLoading = false

@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import {firebaseUrl} from "@/main";
 
 export default {
   name: "AppForm",
@@ -54,7 +55,7 @@ export default {
       this.$emit('submitted', {...this.submittedData})
       const sendPostRequest = async () => {
         try {
-          const resp = await axios.post(process.env.VUE_APP_URL, this.submittedData);
+          const resp = await axios.post(firebaseUrl, this.submittedData);
           console.log(resp.data);
         } catch (e) {
           const alert = {
